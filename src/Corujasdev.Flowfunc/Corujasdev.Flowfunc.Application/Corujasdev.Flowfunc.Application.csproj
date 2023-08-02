@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
@@ -7,15 +7,20 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Features\Queries\Rule\FindRule\**" />
+    <EmbeddedResource Remove="Features\Queries\Rule\FindRule\**" />
+    <None Remove="Features\Queries\Rule\FindRule\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Features\Commands\Rule\DeleteRule\" />
     <Folder Include="Features\Commands\Rule\UpdateRule\" />
-    <Folder Include="Features\Queries\Rule\GetAllRules\" />
-    <Folder Include="Features\Queries\Rule\FindRule\" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="12.0.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+    <PackageReference Include="Canducci.Pagination" Version="3.0.0" />
     <PackageReference Include="FluentValidation" Version="11.6.0" />
     <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.6.0" />
     <PackageReference Include="Flunt" Version="2.0.5" />

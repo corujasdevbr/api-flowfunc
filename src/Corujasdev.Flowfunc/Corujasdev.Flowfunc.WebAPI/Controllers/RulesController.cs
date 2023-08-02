@@ -1,5 +1,7 @@
 ﻿using Corujasdev.Flowfunc.Application.Features.Commands.Rule.CreateRule;
+using Corujasdev.Flowfunc.Application.Features.Queries.Rule.GetAllRule;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Corujasdev.Flowfunc.WebAPI.Controllers
@@ -21,6 +23,16 @@ namespace Corujasdev.Flowfunc.WebAPI.Controllers
         {
             var response = await _mediator.Send(request, cancellationToken);
             return CustomResponse(response);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAll([FromQuery] GetAllRuleRequest request,
+          CancellationToken cancelationToken
+        )
+        {
+            var result = await _mediator.Send(request, cancelationToken);
+
+            return CustomResponse(result);
         }
     }
 }
