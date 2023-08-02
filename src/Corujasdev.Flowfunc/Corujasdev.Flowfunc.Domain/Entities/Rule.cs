@@ -3,7 +3,7 @@
 namespace Corujasdev.Flowfunc.Domain.Entities;
 public class Rule : BaseEntity
 {
-    public string? Name { get; set; }
-    public string? FunctionName { get; set; }
+    public required string FunctionName { get; set; }
+    public required string Description { get; set; }
     public string? RuleType { get; set; }
 }

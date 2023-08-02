@@ -13,7 +13,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\Commands\Rule\DeleteRule\" />
     <Folder Include="Features\Commands\Rule\UpdateRule\" />
   </ItemGroup>
 

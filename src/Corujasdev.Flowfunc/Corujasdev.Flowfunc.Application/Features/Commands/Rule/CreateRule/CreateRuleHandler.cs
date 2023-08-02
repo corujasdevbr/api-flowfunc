@@ -23,7 +23,7 @@ public sealed class CreateRuleHandler : IRequestHandler<CreateRuleRequest, Creat
 
         try
         {
-            var exist = _ruleRepository.Find(x => x.Name == request.Name);
+            var exist = _ruleRepository.Find(x => x.FunctionName == request.Name);
 
             if (exist!.Any())
             {
