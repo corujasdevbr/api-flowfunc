@@ -15,17 +15,21 @@ public abstract class BaseEntity : IEntity
 
         //Valida se o tipo do objeto e o id é o mesmo
 
-        if (ReferenceEquals(this, compareTo)) return true;
-        if (ReferenceEquals(null, compareTo)) return false;
+        if (!ReferenceEquals(this, compareTo))
+        {
+            if (compareTo is null) return false;
 
-        return Id.Equals(compareTo.Id);
+            return Id.Equals(compareTo.Id);
+        }
+
+        return true;
     }
     public static bool operator ==(BaseEntity a, BaseEntity b)
     {
-        if (ReferenceEquals(a, null) && ReferenceEquals(b, null))
+        if (a is null && b is null)
             return true;
 
-        if (ReferenceEquals(a, null) || ReferenceEquals(b, null))
+        if (a is null || b is null)
             return false;
 
         return a.Equals(b);

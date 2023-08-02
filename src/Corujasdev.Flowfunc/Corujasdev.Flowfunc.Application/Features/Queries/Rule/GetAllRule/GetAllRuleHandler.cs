@@ -2,6 +2,7 @@
 using Canducci.Pagination;
 using Corujasdev.Flowfunc.Application.Dto;
 using Corujasdev.Flowfunc.Application.Repositories;
+using Corujasdev.Flowfunc.Domain.Common;
 using MediatR;
 using System.Net;
 
@@ -24,11 +25,10 @@ public class GetAllRuleHandler : IRequestHandler<GetAllRuleRequest, GetAllRuleRe
 
         try
         {
-            var rules = _ruleRepository.GetAll(request.Includes)!;
+            var rules = request.Active ? _ruleRepository.GetAll(request.Includes)!.Active() : _ruleRepository.GetAll(request.Includes)!;
 
             if (!string.IsNullOrEmpty(request.Name))
                 rules = rules.Where(x => x.Name!.ToLower().Contains(request.Name.ToLower())).AsQueryable();
-
 
             var rulesDistinct = rules.GroupBy(q => q.Name).Select(x => x.First()).ToList();
 
