@@ -28,9 +28,9 @@ public class GetAllRuleHandler : IRequestHandler<GetAllRuleRequest, GetAllRuleRe
             var rules = request.Active ? _ruleRepository.GetAll(request.Includes)!.Active() : _ruleRepository.GetAll(request.Includes)!;
 
             if (!string.IsNullOrEmpty(request.Name))
-                rules = rules.Where(x => x.Name!.ToLower().Contains(request.Name.ToLower())).AsQueryable();
+                rules = rules.Where(x => x.FunctionName!.ToLower().Contains(request.Name.ToLower())).AsQueryable();
 
-            var rulesDistinct = rules.GroupBy(q => q.Name).Select(x => x.First()).ToList();
+            var rulesDistinct = rules.GroupBy(q => q.FunctionName).Select(x => x.First()).ToList();
 
             var rulesPagination = _mapper.Map<IEnumerable<RuleDto>>(rulesDistinct.Distinct()).ToPaginatedRest(request.Page, request.Quantity ?? rules.Count() );
 

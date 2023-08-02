@@ -10,8 +10,9 @@ public class RuleMap : IEntityTypeConfiguration<Rule>
     {
         builder.ToTable("Rules");
         builder.HasKey(c => c.Id);
-        builder.Property(d => d.Name).HasColumnType("VARCHAR(255)").IsRequired();
         builder.Property(d => d.FunctionName).HasColumnType("VARCHAR(32)").IsRequired();
+        builder.Property(d => d.Description).HasColumnType("TEXT").IsRequired();
+        builder.Property(d => d.RuleType).HasColumnType("VARCHAR(10)");
         builder.Property(x => x.DateCreated).HasColumnType("DATETIME").IsRequired();
         builder.Property(x => x.DateUpdated).HasColumnType("DATETIME");
         builder.Property(x => x.DateDeleted).HasColumnType("DATETIME");
