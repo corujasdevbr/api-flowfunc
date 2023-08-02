@@ -10,7 +10,7 @@
 
     public static class EntityExtensions
     {
-        public static IEnumerable<T> Active<T>(this IQueryable<T> query) where T : IEntity
+        public static IEnumerable<T> Active<T>(this IEnumerable<T> query) where T : IEntity
             => query.Where(d => !d.DateDeleted.HasValue);
     }
 }
