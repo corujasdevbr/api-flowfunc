@@ -1,8 +1,8 @@
 ﻿namespace Corujasdev.Flowfunc.Domain.Common;
-public abstract class BaseEntity
+public abstract class BaseEntity : IEntity
 {
-    public Guid Id { get; set; }
-    public DateTime DateCreated { get; set; }
+    public required Guid Id { get; set; }
+    public required DateTime DateCreated { get; set; }
     public DateTime? DateUpdated { get; set; }
     public DateTime? DateDeleted { get; set; }
 

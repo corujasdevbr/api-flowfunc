@@ -2,6 +2,7 @@
 using Corujasdev.Flowfunc.Application.Features.Commands.Rule.DeleteRule;
 using Corujasdev.Flowfunc.Application.Features.Queries.Rule.GetAllRule;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Corujasdev.Flowfunc.WebAPI.Controllers
