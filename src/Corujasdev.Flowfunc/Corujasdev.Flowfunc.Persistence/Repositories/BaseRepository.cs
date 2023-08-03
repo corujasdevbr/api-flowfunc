@@ -24,9 +24,11 @@ public class BaseRepository<T> : IBaseRepository<T> where T : BaseEntity
         _context.Update(entity);
     }
 
-    public void Update(T entity)
+    public T Update(T entity)
     {
+        entity.DateUpdated = DateTime.UtcNow;
         _context.Update(entity);
+        return entity;
     }
 
     public IEnumerable<T>? GetAll(string[]? includes = null)
