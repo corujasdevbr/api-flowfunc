@@ -2,24 +2,24 @@
 using Corujasdev.Flowfunc.Application.Repositories;
 using MediatR;
 
-namespace Corujasdev.Flowfunc.Application.Features.Commands.Rule.CreateRule;
+namespace Corujasdev.Flowfunc.Application.Features.Commands.Rule.PostRule;
 
-public sealed class CreateRuleHandler : IRequestHandler<CreateRuleRequest, CreateRuleResponse>
+public sealed class PostRuleHandler : IRequestHandler<PostRuleRequest, PostRuleResponse>
 {
     private readonly IUnitOfWork _unitOfWork;
     private readonly IRuleRepository _ruleRepository;
     private readonly IMapper _mapper;
 
-    public CreateRuleHandler(IUnitOfWork unitOfWork, IRuleRepository RuleRepository, IMapper mapper)
+    public PostRuleHandler(IUnitOfWork unitOfWork, IRuleRepository RuleRepository, IMapper mapper)
     {
         _unitOfWork = unitOfWork;
         _ruleRepository = RuleRepository;
         _mapper = mapper;
     }
 
-    public async Task<CreateRuleResponse> Handle(CreateRuleRequest request, CancellationToken cancellationToken)
+    public async Task<PostRuleResponse> Handle(PostRuleRequest request, CancellationToken cancellationToken)
     {
-        var response = new CreateRuleResponse();
+        var response = new PostRuleResponse();
 
         try
         {

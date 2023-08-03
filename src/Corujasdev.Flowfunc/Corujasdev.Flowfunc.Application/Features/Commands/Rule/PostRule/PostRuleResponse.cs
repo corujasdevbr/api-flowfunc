@@ -1,8 +1,8 @@
 ﻿using Corujasdev.Flowfunc.Application.Common.Core;
 
-namespace Corujasdev.Flowfunc.Application.Features.Commands.Rule.CreateRule
+namespace Corujasdev.Flowfunc.Application.Features.Commands.Rule.PostRule
 {
-    public class CreateRuleResponse : GenericResult
+    public class PostRuleResponse : GenericResult
     {
         public new Result? Data { get; set; }
     }
