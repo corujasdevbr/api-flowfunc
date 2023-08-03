@@ -1,4 +1,4 @@
-﻿using Corujasdev.Flowfunc.Application.Features.Commands.Rule.CreateRule;
+﻿using Corujasdev.Flowfunc.Application.Features.Commands.Rule.PostRule;
 using Corujasdev.Flowfunc.Application.Features.Commands.Rule.DeleteRule;
 using Corujasdev.Flowfunc.Application.Features.Commands.Rule.PutRule;
 using Corujasdev.Flowfunc.Application.Features.Queries.Rule.GetAllRule;
@@ -19,7 +19,7 @@ namespace Corujasdev.Flowfunc.WebAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<CreateRuleResponse>> Create(CreateRuleRequest request,
+        public async Task<ActionResult<PostRuleResponse>> Create(PostRuleRequest request,
             CancellationToken cancellationToken)
         {
             var response = await _mediator.Send(request, cancellationToken);
