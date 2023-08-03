@@ -32,7 +32,7 @@ public class GetAllRuleHandler : IRequestHandler<GetAllRuleRequest, GetAllRuleRe
 
             var rulesDistinct = rules.GroupBy(q => q.FunctionName).Select(x => x.First()).ToList();
 
-            var rulesPagination = _mapper.Map<IEnumerable<RuleDto>>(rulesDistinct.Distinct()).ToPaginatedRest(request.Page, request.Quantity ?? rules.Count() );
+            var rulesPagination = _mapper.Map<IEnumerable<RuleDto>>(rulesDistinct.Distinct()).ToPaginatedRest(request.Page, request.Quantity ?? (rules.Count() > 0 ? rules.Count() : 1) );
 
             response.Data = rulesPagination;
             response.StatusCode = (int)HttpStatusCode.OK;

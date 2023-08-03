@@ -7,7 +7,7 @@ public abstract class BaseEntity : IEntity
     public DateTime? DateDeleted { get; set; }
 
     public virtual void Deleted() => DateDeleted = DateTime.Now;
-    public virtual void Active() => DateDeleted = null;
+    public virtual void Activate() => DateDeleted = null;
 
     public override bool Equals(object? obj)
     {
