@@ -2,7 +2,6 @@
 using Corujasdev.Flowfunc.Application.Features.Commands.Rule.DeleteRule;
 using Corujasdev.Flowfunc.Application.Features.Queries.Rule.GetAllRule;
 using MediatR;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Corujasdev.Flowfunc.WebAPI.Controllers
@@ -31,6 +30,16 @@ namespace Corujasdev.Flowfunc.WebAPI.Controllers
           CancellationToken cancelationToken
         )
         {
+            var result = await _mediator.Send(request, cancelationToken);
+
+            return CustomResponse(result);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(Guid id, CancellationToken cancelationToken)
+        {
+            var request = new DeleteRuleRequest(id);
+            
             var result = await _mediator.Send(request, cancelationToken);
 
             return CustomResponse(result);
