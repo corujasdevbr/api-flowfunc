@@ -23,11 +23,11 @@ public sealed class CreateRuleHandler : IRequestHandler<CreateRuleRequest, Creat
 
         try
         {
-            var exist = _ruleRepository.Find(x => x.Name == request.Name);
+            var exist = _ruleRepository.Find(x => x.FunctionName == request.FunctionName);
 
             if (exist!.Any())
             {
-                response.AddNotification("Rule", $"Rule {request.Name} registered");
+                response.AddNotification("Rule", $"Rule {request.FunctionName} registered");
                 response.StatusCode = 500;
                 response.Message = "An error has occurred";
                 response.Success = false;
@@ -40,7 +40,7 @@ public sealed class CreateRuleHandler : IRequestHandler<CreateRuleRequest, Creat
             await _unitOfWork.Save(cancellationToken);
 
             response.StatusCode = 201;
-            response.Message = $"Rule {request.Name} Created";
+            response.Message = $"Rule {request.FunctionName} Created";
             response.Data = new Result() { Id = rule.Id, DateCreated = rule.DateCreated };
             response.Success = true;
 

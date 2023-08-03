@@ -1,10 +1,12 @@
 ﻿using Corujasdev.Flowfunc.Application.Features.Commands.Rule.CreateRule;
+using Corujasdev.Flowfunc.Application.Features.Commands.Rule.DeleteRule;
+using Corujasdev.Flowfunc.Application.Features.Queries.Rule.GetAllRule;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Corujasdev.Flowfunc.WebAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/rules")]
     [ApiController]
     public class RulesController : MainController
     {
@@ -21,6 +23,16 @@ namespace Corujasdev.Flowfunc.WebAPI.Controllers
         {
             var response = await _mediator.Send(request, cancellationToken);
             return CustomResponse(response);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAll([FromQuery] GetAllRuleRequest request,
+          CancellationToken cancelationToken
+        )
+        {
+            var result = await _mediator.Send(request, cancelationToken);
+
+            return CustomResponse(result);
         }
     }
 }

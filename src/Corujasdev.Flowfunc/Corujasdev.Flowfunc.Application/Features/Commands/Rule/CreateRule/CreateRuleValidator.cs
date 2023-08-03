@@ -6,7 +6,11 @@ public sealed class CreateRuleValidator : AbstractValidator<CreateRuleRequest>
 {
     public CreateRuleValidator()
     {
-        RuleFor(x => x.Name).NotEmpty().MaximumLength(255).WithMessage("Please ensure you have entered your {PropertyName}"); ;
-        RuleFor(x => x.FunctionName).NotEmpty().MinimumLength(5).MaximumLength(32).WithMessage("Please ensure you have entered your {PropertyName}");
+        RuleFor(x => x.FunctionName).NotEmpty().WithMessage("Informe a {PropertyName}");
+        RuleFor(x => x.FunctionName).MinimumLength(5).MaximumLength(32).WithMessage("O nome da Function deve ter entre 5 e 32 caracteres");
+        RuleFor(x => x.Description).NotEmpty().WithMessage("Informe a descrição da Function");
+        RuleFor(x => x.RuleType).MaximumLength(2).WithMessage("O tipo de Function pode ter no máximo 2 caracteres");
+
+        
     }
 }
