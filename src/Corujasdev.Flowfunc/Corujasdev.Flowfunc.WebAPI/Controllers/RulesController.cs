@@ -1,5 +1,6 @@
 ﻿using Corujasdev.Flowfunc.Application.Features.Commands.Rule.CreateRule;
 using Corujasdev.Flowfunc.Application.Features.Commands.Rule.DeleteRule;
+using Corujasdev.Flowfunc.Application.Features.Commands.Rule.PutRule;
 using Corujasdev.Flowfunc.Application.Features.Queries.Rule.GetAllRule;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -40,6 +41,16 @@ namespace Corujasdev.Flowfunc.WebAPI.Controllers
         {
             var request = new DeleteRuleRequest(id);
             
+            var result = await _mediator.Send(request, cancelationToken);
+
+            return CustomResponse(result);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Put(Guid id, [FromBody] PutRuleRequest request, CancellationToken cancelationToken)
+        {
+            request.Id = id;
+
             var result = await _mediator.Send(request, cancelationToken);
 
             return CustomResponse(result);
